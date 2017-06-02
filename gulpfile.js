@@ -13,7 +13,7 @@ gulp.task('pug', function buildHTML() {
   .pipe(pug({
     pretty: true
   }))
-  .pipe(gulp.dest('./public'))
+  .pipe(gulp.dest('./docs'))
   .pipe(connect.reload());
 });
 // gulp.task('pug', function(){
@@ -33,20 +33,20 @@ gulp.task('sass', function () {
       includePaths: require('node-neat').includePaths
     }).on('error', sass.logError))
     .pipe(csscomb())
-    .pipe(gulp.dest('./public/'))
+    .pipe(gulp.dest('./docs/'))
     .pipe(connect.reload());
 });
 
 gulp.task('image', () =>
     gulp.src('./assets/img/**/*')
         .pipe(imagemin())
-        .pipe(gulp.dest('./public/img'))
+        .pipe(gulp.dest('./docs/img'))
 );
 
 // Minify JS
 gulp.task('js', function() {
   	gulp.src('assets/**/*.js')
-    .pipe(gulp.dest('./public/'))
+    .pipe(gulp.dest('./docs/'))
    	.pipe(connect.reload());
 });
 
@@ -66,7 +66,7 @@ gulp.task('sass:watch', function () {
 // Server
 gulp.task('connect', function() {
   connect.server({
-    root: 'public',
+    root: 'docs',
     livereload: true
   });
 });
